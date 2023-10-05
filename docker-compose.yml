@@ -1,0 +1,27 @@
+version: '3.7'
+
+services:
+  web:
+    build: ./django-app
+    command: sh -c "python3 manage.py migrate && python3 manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - ./django-app:/usr/src/app/
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./.env.dev
+  redis:
+    image: redis:7-alpine
+  celery:
+    build:
+      context: ./django-app
+    command: celery -A assignment worker -B --loglevel=INFO
+    volumes:
+      - ./django-app:/usr/src/app/
+    env_file:
+      - ./.env.dev
+    depends_on:
+      - redis
+      - web
+volumes:
+  redis_data:
