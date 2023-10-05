@@ -1,4 +1,6 @@
 .idea
 .idea/*
 /frontend/node_modules/*
+media/*
+media
 django-app/db.sqlite3

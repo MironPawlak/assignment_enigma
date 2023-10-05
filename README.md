@@ -5,6 +5,8 @@ Project is configured to run on dockercompose up, and should migrate on start. T
 2. Run the following command to build and start the containers:: ``docker-compose up --build``
 3. Migrations will perform automatically
 
+All endpoints can be viewed via drf interface 
+
 ## Testing
 To run test, use the following command
 ``docker exec -it <container_name> python3 manage.py test``
